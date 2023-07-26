@@ -2,13 +2,23 @@
   "name": "webpack-basic",
   "version": "1.0.0",
   "description": "## Run",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development --open"
   },
   "keywords": [
     "webpack"
   ],
   "author": "Guranda Jikia",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.6.0",
+    "css-loader": "^6.8.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  }
 }
