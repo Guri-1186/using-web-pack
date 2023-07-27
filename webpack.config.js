@@ -25,7 +25,7 @@ module.exports = {
         },
         {
           from: path.resolve(__dirname, 'src/styles/style.css'),
-          to: path.resolve(__dirname, 'dist/style.css'),
+          to: path.resolve(__dirname, 'dist/styles/style.css'),
         },
         {
           from: path.resolve(__dirname, 'src/assets/images/your-logo-here.png'),
