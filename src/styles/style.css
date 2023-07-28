@@ -245,7 +245,7 @@ main {
   letter-spacing: 3px;
   text-transform: uppercase;
   width: 130px;
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 
@@ -293,34 +293,42 @@ main {
     grid-template-columns: 1fr 1fr;
     padding: 0 32px;
   }
+
   .app-header__nav-menu-button {
     display: inline-block;
     justify-self: flex-end;
     align-self: flex-end;
   }
+
   .app-header__nav {
     display: none;
   }
+
   .app-section--image-peak {
     height: 648px;
   }
+
   .app-section--image-culture {
     height: 698px;
   }
+
   .app-section__button--our-culture {
     width: 70px;
     height: 70px;
     margin: 32px auto;
     font-size: 2rem;
   }
+
   .app-section__article {
     grid-template-columns: 1fr;
     gap: 0 0;
     margin: 0 16px;
   }
+
   .app-section__button--read-more {
     margin: 24px auto 48px;
   }
+
   .app-footer {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(9, 1fr);
@@ -329,6 +337,7 @@ main {
     justify-content: center;
     padding: 0 32px 0;
   }
+
   .app-footer__rights {
     justify-self: flex-start;
   }

@@ -1,4 +1,3 @@
-
 export const JoinUsSection = {
   htmlElem: `
     <section class="app-section app-section--image-join">
@@ -12,8 +11,6 @@ export const JoinUsSection = {
     </section>
   `,
 
-
-  
   render: function () {
     const footer = document.querySelector('footer');
     footer.insertAdjacentHTML('beforebegin', this.htmlElem);
@@ -25,15 +22,12 @@ export const JoinUsSection = {
     });
   },
 };
-  
-
 
 class Section {
   constructor(htmlElem) {
     this.htmlElem = htmlElem;
   }
 
- 
   remove() {
     const section = document.querySelector('.app-section--image-join');
     if (section) {
@@ -51,12 +45,10 @@ class SectionCreatorFactory {
       case 'advanced':
         return new Section(
           JoinUsSection.htmlElem.replace('Join Our Program', 'Join Our Advanced Program')
-                                .replace('SUBSCRIBE', 'Subscribe to Advanced Program')
+            .replace('SUBSCRIBE', 'Subscribe to Advanced Program')
         );
+    }
   }
-}
 }
 
 export { SectionCreatorFactory };
-
-

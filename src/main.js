@@ -1,17 +1,13 @@
-
-
 import { JoinUsSection } from './join-us.js';
 import { SectionCreatorFactory } from './join-us.js';
 import { validate } from './email-validator.js';
 import './styles/style.css';
 
-
 document.addEventListener('DOMContentLoaded', function () {
-const sectionCreator = new SectionCreatorFactory();
+  const sectionCreator = new SectionCreatorFactory();
 
-JoinUsSection.render(); 
+  JoinUsSection.render();
 
-  
   const emailInput = document.getElementById('email');
   const email = emailInput.value.trim();
 
@@ -25,5 +21,3 @@ JoinUsSection.render();
     alert('Please enter a valid email address.');
   }
 });
-
-
