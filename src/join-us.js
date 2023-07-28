@@ -1,4 +1,6 @@
-export const JoinUsSection = {
+import { validate } from './email-validator.js';
+
+const JoinUsSection = {
   htmlElem: `
     <section class="app-section app-section--image-join">
       <h2 class="app-title">Join Our Program</h2>
@@ -11,6 +13,13 @@ export const JoinUsSection = {
     </section>
   `,
 
+  remove() {
+    const section = document.querySelector('.app-section--image-join');
+    if (section) {
+      section.remove();
+    }
+  },
+
   render: function () {
     const footer = document.querySelector('footer');
     footer.insertAdjacentHTML('beforebegin', this.htmlElem);
@@ -18,35 +27,33 @@ export const JoinUsSection = {
     const submitButton = document.querySelector('button.app-section__button--subscribe');
     submitButton.addEventListener('click', function (e) {
       e.preventDefault();
-      console.log(document.querySelector("#email").value);
+      const emailInput = document.getElementById('email');
+      const email = emailInput.value.trim();
+    
+      // Validate the email address using the validate function
+      const isValidEmail = validate(email);
+    
+      // Display an alert message with the result of the validation
+      if (isValidEmail) {
+        alert('Email address is valid.');
+      } else {
+        alert('Please enter a valid email address.');
+      }
     });
   },
 };
-
-class Section {
-  constructor(htmlElem) {
-    this.htmlElem = htmlElem;
-  }
-
-  remove() {
-    const section = document.querySelector('.app-section--image-join');
-    if (section) {
-      section.remove();
-    }
-  }
-}
 
 class SectionCreatorFactory {
   createSection(type) {
     switch (type) {
       case 'standard':
-        return new Section(JoinUsSection.htmlElem);
+        return JoinUsSection;
 
       case 'advanced':
-        return new Section(
-          JoinUsSection.htmlElem.replace('Join Our Program', 'Join Our Advanced Program')
-            .replace('SUBSCRIBE', 'Subscribe to Advanced Program')
-        );
+        JoinUsSection.htmlElem.replace('Join Our Program', 'Join Our Advanced Program')
+            .replace('SUBSCRIBE', 'Subscribe to Advanced Program');
+
+        return JoinUsSection;
     }
   }
 }
