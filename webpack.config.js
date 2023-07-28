@@ -1,6 +1,7 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -8,39 +9,43 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  devServer: {
+    open: true,
+    host: 'localhost',
+    hot: true,
+  },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        type: 'asset',
       },
     ],
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/index.html'),
-          to: path.resolve(__dirname, 'dist/index.html'),
-        },
-        {
-          from: path.resolve(__dirname, 'src/styles/style.css'),
-          to: path.resolve(__dirname, 'dist/styles/style.css'),
-        },
-        {
-          from: path.resolve(__dirname, 'src/assets/images/your-logo-here.png'),
-          to: path.resolve(__dirname, 'dist/your-logo-here.png'),
-        },
-        {
-          from: path.resolve(__dirname, 'src/assets/images/your-logo-footer.png'),
-          to: path.resolve(__dirname, 'dist/your-logo-footer.png'),
+          from: path.resolve(__dirname, 'src/assets'),
+          to: path.resolve(__dirname, 'dist/assets'),
         },
       ],
     }),
-    new MiniCssExtractPlugin({
-      filename: 'style.css',
-    }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin(),
+    ],
+  },
   // Add the stats option to get more detailed build information
   stats: {
     assets: true,
